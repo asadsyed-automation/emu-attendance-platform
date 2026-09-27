@@ -1033,6 +1033,61 @@ th.sticky-col-roll {
   padding: 0.15rem 1px !important;
 }
 
+/* Blank Lecture Slots (32-Column Register Grid) */
+.blank-header-cell {
+  text-align: center;
+  width: 30px;
+  min-width: 28px;
+  max-width: 34px;
+  padding: 4px 1px 6px !important;
+  vertical-align: bottom;
+  height: 96px;
+  user-select: none;
+  border-right: 1px solid var(--border-light);
+  background: var(--bg-table-header);
+}
+
+.blank-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.blank-slot-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-subtle);
+  line-height: 1;
+  padding: 2px 0;
+  opacity: 0.75;
+}
+
+.cell-blank-wrapper {
+  text-align: center;
+  width: 30px;
+  min-width: 28px;
+  max-width: 34px;
+  padding: 0.15rem 1px !important;
+  border-right: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background: transparent;
+}
+
+.blank-cell-dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  opacity: 0.35;
+}
+
 .attendance-badge {
   display: inline-flex;
   align-items: center;
@@ -1467,6 +1522,37 @@ th.sticky-col-roll {
     color: #000000 !important;
     font-size: 6.5pt !important;
     font-weight: bold !important;
+  }
+
+  .blank-header-cell {
+    height: 75px !important;
+    width: 18px !important;
+    min-width: 16px !important;
+    max-width: 22px !important;
+    padding: 2px 0 !important;
+    vertical-align: bottom !important;
+    background: #ffffff !important;
+    border: 1px solid #000000 !important;
+  }
+
+  .blank-slot-text {
+    color: #555555 !important;
+    font-size: 5.5pt !important;
+    font-weight: normal !important;
+  }
+
+  .cell-blank-wrapper {
+    width: 18px !important;
+    min-width: 16px !important;
+    max-width: 22px !important;
+    border: 1px solid #000000 !important;
+    background: #ffffff !important;
+    height: 14px !important;
+    padding: 0 !important;
+  }
+
+  .blank-cell-dot {
+    display: none !important;
   }
 
   .sticky-col-sr,

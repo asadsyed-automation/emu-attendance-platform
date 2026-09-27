@@ -93,6 +93,11 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
     return true;
   });
 
+  // Total 32 official semester lecture slots
+  const TOTAL_SEMESTER_SLOTS = Math.max(32, lectures.length);
+  const blankSlotsCount = Math.max(0, TOTAL_SEMESTER_SLOTS - lectures.length);
+  const blankSlots = Array.from({ length: blankSlotsCount }, (_, i) => lectures.length + i + 1);
+
   return (
     <div className="register-view">
       {/* Top Action & Navigation Bar */}
@@ -144,7 +149,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
               type="button"
               className="btn btn-primary"
               onClick={onOpenUnlockModal}
-              title="Unlock admin with master password (emu2026) to mark attendance"
+              title="Unlock admin with master password to mark attendance"
             >
               <Icons.Lock size={16} />
               <span>Unlock to Mark Attendance</span>
@@ -215,13 +220,13 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
           </div>
           <div className="meta-field">
             <span className="meta-label">Lectures Held:</span>
-            <span className="meta-value">{lectures.length} Days</span>
+            <span className="meta-value">{lectures.length} / 32 Slots</span>
           </div>
         </div>
       </div>
 
       {/* =========================================================
-          The Official Attendance Table Grid
+          The Official Attendance Table Grid (32 Columns)
           ========================================================= */}
       <div className="table-card">
         {/* Search & Filter Toolbar */}
@@ -285,7 +290,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                 <th className="sticky-col-roll">Roll No.</th>
                 <th className="col-student-name">Student Name</th>
 
-                {/* Dynamic Lecture Date Columns */}
+                {/* 1. Dynamic Held Lecture Date Columns */}
                 {lectures.map((lec) => (
                   <th
                     key={lec.id}
@@ -304,6 +309,21 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                         </button>
                       )}
                       <span className="date-vertical-text">{lec.displayDate}</span>
+                    </div>
+                  </th>
+                ))}
+
+                {/* 2. Blank Unheld Lecture Slots up to 32 */}
+                {blankSlots.map((slotNum) => (
+                  <th
+                    key={`blank-slot-${slotNum}`}
+                    className="blank-header-cell"
+                    title={`Lecture Slot #${slotNum} (Pending)`}
+                    onClick={isUnlocked ? onOpenMarkModal : undefined}
+                    style={{ cursor: isUnlocked ? 'pointer' : 'default' }}
+                  >
+                    <div className="blank-header-content">
+                      <span className="blank-slot-text">#{slotNum}</span>
                     </div>
                   </th>
                 ))}
@@ -360,7 +380,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                       {student.name}
                     </td>
 
-                    {/* Dynamic Date Cells */}
+                    {/* 1. Dynamic Date Cells for Held Lectures */}
                     {lectures.map((lec) => {
                       const status = lec.records[student.rollNo] || 'P';
                       const isPresent = status === 'P';
@@ -393,6 +413,18 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                       );
                     })}
 
+                    {/* 2. Blank Cells for Unheld Slots */}
+                    {blankSlots.map((slotNum) => (
+                      <td
+                        key={`blank-cell-${slotNum}-${student.rollNo}`}
+                        className="cell-blank-wrapper"
+                        title={`Slot #${slotNum} (Pending)`}
+                        onClick={isUnlocked ? onOpenMarkModal : undefined}
+                      >
+                        <span className="blank-cell-dot" />
+                      </td>
+                    ))}
+
                     {/* Summary Columns */}
                     <td className="summary-col" style={{ color: '#16a34a' }}>
                       {pCount}
@@ -421,7 +453,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
               {filteredStudents.length === 0 && (
                 <tr>
                   <td
-                    colSpan={3 + lectures.length + 4}
+                    colSpan={3 + TOTAL_SEMESTER_SLOTS + 4}
                     style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-muted)' }}
                   >
                     No student found matching filter criteria.
@@ -437,6 +469,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                   Daily Presents Total:
                 </td>
 
+                {/* Daily totals for held lectures */}
                 {lectures.map((lec) => {
                   let dayPresents = 0;
                   OFFICIAL_STUDENTS.forEach((st) => {
@@ -448,6 +481,13 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                     </td>
                   );
                 })}
+
+                {/* Blank footers for unheld slots */}
+                {blankSlots.map((slotNum) => (
+                  <td key={`foot-blank-${slotNum}`} className="cell-blank-wrapper" style={{ textAlign: 'center', color: 'var(--text-subtle)' }}>
+                    -
+                  </td>
+                ))}
 
                 <td colSpan={4} style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
                   Active Students: {OFFICIAL_STUDENTS.length}
