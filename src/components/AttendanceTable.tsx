@@ -159,9 +159,9 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
       </div>
 
       {/* =========================================================
-          Official University Sheet Header Block (Matches Physical Sheet)
+          Official University Sheet Header Block (Screen Display)
           ========================================================= */}
-      <div className="official-sheet-header">
+      <div className="official-sheet-header no-print">
         <div className="sheet-univ-title">
           {UNIVERSITY_INFO.institution}
         </div>
@@ -285,6 +285,73 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
         <div className="table-scroll-container">
           <table className="official-attendance-table">
             <thead>
+              {/* Repeating Header Block for Every Printed Page */}
+              <tr className="print-header-repeat-row">
+                <th colSpan={3 + TOTAL_SEMESTER_SLOTS + 4} style={{ padding: 0, border: 'none', background: 'transparent' }}>
+                  <div className="official-sheet-header print-sheet-header">
+                    <div className="sheet-univ-title">
+                      {UNIVERSITY_INFO.institution}
+                    </div>
+                    <div className="sheet-sub-title">
+                      {UNIVERSITY_INFO.department}
+                    </div>
+
+                    <div className="sheet-meta-grid">
+                      <div className="meta-field">
+                        <span className="meta-label">Programme:</span>
+                        <span className="meta-value">{UNIVERSITY_INFO.programme}</span>
+                      </div>
+                      <div className="meta-field">
+                        <span className="meta-label">Shift:</span>
+                        <span className="meta-value">{UNIVERSITY_INFO.shift}</span>
+                      </div>
+                      <div className="meta-field">
+                        <span className="meta-label">Semester:</span>
+                        <span className="meta-value">{UNIVERSITY_INFO.semester}</span>
+                      </div>
+                      <div className="meta-field">
+                        <span className="meta-label">Session:</span>
+                        <span className="meta-value">{UNIVERSITY_INFO.session}</span>
+                      </div>
+
+                      <div className="meta-field">
+                        <span className="meta-label">Course Code:</span>
+                        <span className="meta-value">{course.code}</span>
+                      </div>
+                      <div className="meta-field">
+                        <span className="meta-label">Course Title:</span>
+                        <span className="meta-value">{course.title}</span>
+                      </div>
+                      <div className="meta-field">
+                        <span className="meta-label">Credit Hours:</span>
+                        <span className="meta-value">{course.creditHours}</span>
+                      </div>
+                      <div className="meta-field">
+                        <span className="meta-label">Teacher:</span>
+                        <span className="meta-value">{course.teacher}</span>
+                      </div>
+
+                      <div className="meta-field">
+                        <span className="meta-label">Month(s):</span>
+                        <span className="meta-value">{getMonthRangeString()}</span>
+                      </div>
+                      <div className="meta-field">
+                        <span className="meta-label">Year:</span>
+                        <span className="meta-value">2026</span>
+                      </div>
+                      <div className="meta-field">
+                        <span className="meta-label">Official Strength:</span>
+                        <span className="meta-value">{UNIVERSITY_INFO.officialStrength} Students</span>
+                      </div>
+                      <div className="meta-field">
+                        <span className="meta-label">Lectures Held:</span>
+                        <span className="meta-value">{lectures.length} / 32 Slots</span>
+                      </div>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+
               <tr>
                 <th className="sticky-col-sr">Sr.</th>
                 <th className="sticky-col-roll">Roll No.</th>
@@ -460,12 +527,10 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                   </td>
                 </tr>
               )}
-            </tbody>
 
-            {/* Table Footer with Daily Attendance Totals */}
-            <tfoot>
-              <tr style={{ fontWeight: 'bold', background: 'var(--bg-table-header)' }}>
-                <td colSpan={3} style={{ textAlign: 'right', paddingRight: '1rem' }}>
+              {/* Daily Attendance Totals Row (Rendered once directly after the last student) */}
+              <tr className="daily-totals-row">
+                <td colSpan={3} className="daily-totals-label">
                   Daily Presents Total:
                 </td>
 
@@ -476,7 +541,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                     if (lec.records[st.rollNo] === 'P') dayPresents++;
                   });
                   return (
-                    <td key={lec.id} style={{ textAlign: 'center', color: '#16a34a' }}>
+                    <td key={lec.id} className="daily-totals-cell">
                       {dayPresents}
                     </td>
                   );
@@ -484,36 +549,45 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
 
                 {/* Blank footers for unheld slots */}
                 {blankSlots.map((slotNum) => (
-                  <td key={`foot-blank-${slotNum}`} className="cell-blank-wrapper" style={{ textAlign: 'center', color: 'var(--text-subtle)' }}>
+                  <td key={`foot-blank-${slotNum}`} className="cell-blank-wrapper daily-totals-blank">
                     -
                   </td>
                 ))}
 
-                <td colSpan={4} style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
+                <td colSpan={4} className="daily-totals-summary">
                   Active Students: {OFFICIAL_STUDENTS.length}
+                </td>
+              </tr>
+            </tbody>
+
+            {/* Official Signatures Repeating Footer in Print */}
+            <tfoot className="print-only-tfoot">
+              <tr>
+                <td
+                  colSpan={3 + TOTAL_SEMESTER_SLOTS + 4}
+                  style={{ padding: '14px 4px 2px', border: 'none', background: 'transparent' }}
+                >
+                  <div className="print-signature-block">
+                    <div>
+                      <div className="signature-line">
+                        Course Teacher's Signature
+                      </div>
+                    </div>
+                    <div>
+                      <div className="signature-line">
+                        In-Charge / HOD Dept. of CS & IT
+                      </div>
+                    </div>
+                    <div>
+                      <div className="signature-line">
+                        Dean / Chairperson
+                      </div>
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tfoot>
           </table>
-        </div>
-      </div>
-
-      {/* Official Signatures Block for Printout (Shown only when printing) */}
-      <div className="print-signature-block" style={{ display: 'none' }}>
-        <div>
-          <div style={{ borderTop: '1px solid #000', width: '180px', textAlign: 'center', paddingTop: '4px' }}>
-            Course Teacher's Signature
-          </div>
-        </div>
-        <div>
-          <div style={{ borderTop: '1px solid #000', width: '180px', textAlign: 'center', paddingTop: '4px' }}>
-            In-Charge CS & IT Dept.
-          </div>
-        </div>
-        <div>
-          <div style={{ borderTop: '1px solid #000', width: '180px', textAlign: 'center', paddingTop: '4px' }}>
-            Dean / Chairperson
-          </div>
         </div>
       </div>
     </div>
