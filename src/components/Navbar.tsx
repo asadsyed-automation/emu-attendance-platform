@@ -28,7 +28,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* University Brand */}
         <div className="brand-section" onClick={onNavigateHome} title="Go to Portal Home">
           <div className="brand-crest">
-            <span>EMU</span>
+            <img
+              src="/logo.png"
+              alt="Emerson University Logo"
+              className="brand-logo-img"
+              style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '2px' }}
+            />
           </div>
           <div className="brand-info">
             <div className="brand-title">

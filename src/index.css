@@ -910,7 +910,7 @@ button, input, select, textarea {
   border-bottom: 2px solid var(--border-strong);
 }
 
-/* Mobile Sticky Columns (Exact alignment) */
+/* Mobile Sticky Columns: Sr (0px) & Roll No (38px) */
 .sticky-col-sr {
   position: sticky;
   left: 0;
@@ -925,53 +925,40 @@ button, input, select, textarea {
 .sticky-col-roll {
   position: sticky;
   left: 38px;
-  width: 120px;
-  min-width: 120px;
+  width: 125px;
+  min-width: 125px;
   max-width: 135px;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   background: var(--bg-sticky);
   z-index: 10;
+  box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.15);
 }
 
-.sticky-col-name {
-  position: sticky;
-  left: 158px;
-  width: 155px;
-  min-width: 150px;
-  max-width: 180px;
+.col-student-name {
+  min-width: 175px;
+  max-width: 240px;
   font-weight: 600;
-  background: var(--bg-sticky);
-  z-index: 10;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.12);
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) {
   .sticky-col-sr {
-    width: 48px;
-    min-width: 48px;
-    max-width: 48px;
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
   }
   .sticky-col-roll {
-    left: 48px;
+    left: 44px;
     width: 140px;
     min-width: 140px;
     max-width: 140px;
     font-size: 0.82rem;
   }
-  .sticky-col-name {
-    left: 188px;
-    width: 220px;
-    min-width: 200px;
-    max-width: 240px;
-  }
 }
 
 th.sticky-col-sr,
-th.sticky-col-roll,
-th.sticky-col-name {
+th.sticky-col-roll {
   z-index: 30 !important;
   background: var(--bg-table-header) !important;
 }
@@ -981,8 +968,7 @@ th.sticky-col-name {
 }
 
 .official-attendance-table tbody tr:hover .sticky-col-sr,
-.official-attendance-table tbody tr:hover .sticky-col-roll,
-.official-attendance-table tbody tr:hover .sticky-col-name {
+.official-attendance-table tbody tr:hover .sticky-col-roll {
   background-color: var(--bg-sticky-hover);
 }
 

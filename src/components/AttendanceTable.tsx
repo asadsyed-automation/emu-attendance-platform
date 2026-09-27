@@ -283,7 +283,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
               <tr>
                 <th className="sticky-col-sr">Sr.</th>
                 <th className="sticky-col-roll">Roll No.</th>
-                <th className="sticky-col-name">Student Name</th>
+                <th className="col-student-name">Student Name</th>
 
                 {/* Dynamic Lecture Date Columns */}
                 {lectures.map((lec) => (
@@ -340,7 +340,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
 
                 return (
                   <tr key={student.rollNo}>
-                    {/* Fixed Sticky Columns */}
+                    {/* Fixed Sticky Columns: Sr. and Roll No. */}
                     <td className="sticky-col-sr">{student.sr}</td>
                     <td
                       className="sticky-col-roll"
@@ -350,8 +350,9 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                     >
                       {student.rollNo}
                     </td>
+                    {/* Horizontally scrolling Student Name */}
                     <td
-                      className="sticky-col-name"
+                      className="col-student-name"
                       style={{ cursor: 'pointer' }}
                       onClick={() => onSelectStudent(student.rollNo)}
                       title="Click to view overall student report card"

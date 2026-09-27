@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getMasterPassword, setMasterPassword, resetPortalData, saveStoredAttendance, downloadFile } from '../services/storage';
+import { setMasterPassword, resetPortalData, saveStoredAttendance, downloadFile } from '../services/storage';
 import type { CourseAttendance } from '../types/attendance';
 import { Icons } from './Icons';
 
@@ -16,7 +16,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onClose,
   onDataUpdated,
 }) => {
-  const [currentPass, setCurrentPass] = useState(getMasterPassword());
   const [newPass, setNewPass] = useState('');
   const [passMessage, setPassMessage] = useState('');
 
@@ -29,7 +28,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
       return;
     }
     setMasterPassword(newPass.trim());
-    setCurrentPass(newPass.trim());
     setNewPass('');
     setPassMessage('Master password updated successfully!');
     setTimeout(() => setPassMessage(''), 3000);
@@ -109,7 +107,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               🔒 Master Admin Password
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>
-              Current Password: <code>{currentPass}</code>
+              Update the single master password used by Teachers & CR to mark attendance.
             </p>
 
             <form onSubmit={handleUpdatePassword} style={{ display: 'flex', gap: '0.5rem' }}>

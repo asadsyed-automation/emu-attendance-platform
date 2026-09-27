@@ -107,7 +107,7 @@ export const PasswordModal: React.FC<PasswordModalProps> = ({
                   }}
                 >
                   <Icons.AlertTriangle size={14} />
-                  <span>Incorrect password. Default is <code>emu2026</code></span>
+                  <span>Incorrect password. Please try again.</span>
                 </div>
               )}
             </div>
@@ -127,9 +127,9 @@ export const PasswordModal: React.FC<PasswordModalProps> = ({
             >
               <Icons.Info size={16} style={{ color: 'var(--color-maroon-700)', flexShrink: 0, marginTop: '2px' }} />
               <div>
-                <strong>Default Universal Password:</strong> <code>emu2026</code>.
+                <strong>Restricted Faculty / CR Access:</strong>
                 <br />
-                Single password unlocks attendance marking across all 7 subjects.
+                Only authorized teachers and CRs can unlock attendance marking.
               </div>
             </div>
           </div>
