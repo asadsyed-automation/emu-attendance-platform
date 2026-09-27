@@ -183,18 +183,15 @@ button, input, select, textarea {
   width: 38px;
   height: 38px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, var(--color-maroon-700), var(--color-maroon-900));
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-weight: 800;
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  box-shadow: 0 3px 8px rgba(122, 31, 31, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-strong);
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
