@@ -105,3 +105,4 @@ emu-attendance-platform/
 ├── package.json
 └── vite.config.ts
 ```
+"# emu-attendance-platform" 
