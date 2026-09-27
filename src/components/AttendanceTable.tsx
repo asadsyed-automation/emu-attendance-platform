@@ -293,7 +293,6 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                     title={`${lec.topic || 'Lecture'} (${lec.date})`}
                   >
                     <div className="date-header-content">
-                      <span className="date-day-str">{lec.displayDate}</span>
                       {isUnlocked && (
                         <button
                           type="button"
@@ -301,9 +300,10 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                           onClick={(e) => handleDeleteLectureClick(e, lec)}
                           title={`Delete column for ${lec.displayDate}`}
                         >
-                          <Icons.Trash2 size={12} />
+                          <Icons.Trash2 size={11} />
                         </button>
                       )}
+                      <span className="date-vertical-text">{lec.displayDate}</span>
                     </div>
                   </th>
                 ))}

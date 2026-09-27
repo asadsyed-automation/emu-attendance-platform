@@ -133,12 +133,14 @@ export const OFFICIAL_STUDENTS: Student[] = [
   { id: '52', sr: 58, rollNo: 'COSC231122161', name: 'Muhammad Mubeen' },
 ];
 
-// Helper to generate formatted display date like "07 Sep" from "2026-09-07"
+// Helper to generate formatted display date like "07/09/2026" from "2026-09-07"
 export function formatDisplayDate(dateStr: string): string {
   try {
     const [year, month, day] = dateStr.split('-').map(Number);
-    const date = new Date(year, month - 1, day);
-    return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+    if (!year || !month || !day) return dateStr;
+    const dayStr = String(day).padStart(2, '0');
+    const monthStr = String(month).padStart(2, '0');
+    return `${dayStr}/${monthStr}/${year}`;
   } catch {
     return dateStr;
   }

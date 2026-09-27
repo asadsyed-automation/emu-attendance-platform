@@ -969,35 +969,50 @@ th.sticky-col-roll {
   background-color: var(--bg-sticky-hover);
 }
 
-/* Date Column Header */
+/* Date Column Header - Narrow & Vertical (Excel Style) */
 .date-header-cell {
   text-align: center;
-  min-width: 62px;
+  width: 32px;
+  min-width: 30px;
+  max-width: 36px;
+  padding: 4px 1px 6px !important;
+  vertical-align: bottom;
+  height: 96px;
   cursor: pointer;
   user-select: none;
+  border-right: 1px solid var(--border-light);
 }
 
 .date-header-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.15rem;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 3px;
 }
 
-.date-day-str {
-  font-size: 0.78rem;
+.date-vertical-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--color-maroon-700);
+  line-height: 1;
+  padding: 2px 0;
 }
 
-[data-theme='dark'] .date-day-str {
+[data-theme='dark'] .date-vertical-text {
   color: #fca5a5;
 }
 
 .date-delete-btn {
-  opacity: 0.4;
+  opacity: 0;
   font-size: 0.65rem;
-  padding: 0.1rem 0.3rem;
+  padding: 0.1rem 0.2rem;
   color: #ef4444;
   background: transparent;
   border: none;
@@ -1012,28 +1027,31 @@ th.sticky-col-roll {
 /* Attendance Cell Marks */
 .cell-mark-wrapper {
   text-align: center;
-  padding: 0.15rem !important;
+  width: 32px;
+  min-width: 30px;
+  max-width: 36px;
+  padding: 0.15rem 1px !important;
 }
 
 .attendance-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 26px;
+  width: 25px;
+  height: 24px;
   border-radius: var(--radius-sm);
   font-weight: 800;
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   cursor: default;
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
 @media (min-width: 768px) {
   .attendance-badge {
-    width: 32px;
-    height: 30px;
-    font-size: 0.95rem;
+    width: 27px;
+    height: 25px;
+    font-size: 0.88rem;
   }
 }
 
@@ -1332,14 +1350,19 @@ th.sticky-col-roll {
 @media print {
   @page {
     size: A4 landscape;
-    margin: 6mm 5mm;
+    margin: 6mm 5mm 6mm 5mm;
   }
 
-  body {
+  html, body {
     background: #ffffff !important;
     color: #000000 !important;
-    font-size: 9pt;
-    font-family: 'Times New Roman', serif, sans-serif !important;
+    font-size: 8pt !important;
+    font-family: 'Times New Roman', Times, serif, sans-serif !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   .portal-navbar,
@@ -1350,73 +1373,150 @@ th.sticky-col-roll {
     display: none !important;
   }
 
-  .main-content {
+  .app-wrapper,
+  .main-content,
+  .register-view,
+  .table-card,
+  .table-scroll-container {
+    display: block !important;
+    position: static !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    width: 100% !important;
     max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
-  }
-
-  .official-sheet-header {
-    border: 2px solid #000000 !important;
-    padding: 5px 8px !important;
-    margin-bottom: 6px !important;
-    background: #ffffff !important;
-    color: #000000 !important;
-  }
-
-  .sheet-univ-title {
-    color: #000000 !important;
-    font-size: 12pt !important;
-    border-bottom: 1px solid #000000 !important;
-    padding-bottom: 2px !important;
-    margin-bottom: 3px !important;
-  }
-
-  .table-card {
     border: none !important;
     box-shadow: none !important;
   }
 
-  .official-attendance-table {
-    border: 1px solid #000000 !important;
+  .official-sheet-header {
+    border: 2px solid #000000 !important;
+    padding: 4px 8px !important;
+    margin-bottom: 6px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .sheet-univ-title {
+    color: #000000 !important;
+    font-size: 11.5pt !important;
+    border-bottom: 1px solid #000000 !important;
+    padding-bottom: 2px !important;
+    margin-bottom: 2px !important;
+    font-weight: bold !important;
+  }
+
+  .sheet-sub-title {
+    font-size: 8pt !important;
+    margin-bottom: 4px !important;
+    color: #000000 !important;
+  }
+
+  .sheet-meta-grid {
     font-size: 7.5pt !important;
+    padding-top: 3px !important;
+    border-top: 1px solid #000000 !important;
+    gap: 2px 8px !important;
+  }
+
+  .official-attendance-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 7pt !important;
+    border: 1px solid #000000 !important;
+    page-break-inside: auto !important;
+    table-layout: auto !important;
+  }
+
+  .official-attendance-table thead {
+    display: table-header-group !important;
+  }
+
+  .official-attendance-table tfoot {
+    display: table-footer-group !important;
+  }
+
+  .official-attendance-table tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
   .official-attendance-table th,
   .official-attendance-table td {
     border: 1px solid #000000 !important;
-    padding: 2px 3px !important;
+    padding: 2px 2px !important;
     color: #000000 !important;
     background: #ffffff !important;
+    height: auto !important;
+  }
+
+  .date-header-cell {
+    height: 75px !important;
+    width: 22px !important;
+    min-width: 18px !important;
+    max-width: 26px !important;
+    padding: 2px 0 !important;
+    vertical-align: bottom !important;
+  }
+
+  .date-vertical-text {
+    color: #000000 !important;
+    font-size: 6.5pt !important;
+    font-weight: bold !important;
   }
 
   .sticky-col-sr,
-  .sticky-col-roll,
-  .sticky-col-name {
+  .sticky-col-roll {
     position: static !important;
     box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .col-student-name {
+    min-width: 120px !important;
+    max-width: 150px !important;
+    font-size: 7pt !important;
+  }
+
+  .attendance-badge {
+    width: auto !important;
+    height: auto !important;
+    font-size: 7pt !important;
+    font-weight: bold !important;
+    background: transparent !important;
+    border: none !important;
   }
 
   .attendance-badge.present {
     color: #000000 !important;
-    background: transparent !important;
-    border: none !important;
-    font-weight: bold;
   }
 
   .attendance-badge.absent {
     color: #000000 !important;
-    background: #f0f0f0 !important;
+    background: #e0e0e0 !important;
+    padding: 0 1px !important;
     border: 1px solid #000000 !important;
-    font-weight: bold;
+  }
+
+  .pct-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    font-weight: bold !important;
   }
 
   .print-signature-block {
     display: flex !important;
     justify-content: space-between;
-    margin-top: 20px;
-    padding: 0 15px;
+    margin-top: 25px !important;
+    padding: 0 15px !important;
     font-weight: bold;
-    font-size: 8.5pt;
+    font-size: 8pt;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 }
