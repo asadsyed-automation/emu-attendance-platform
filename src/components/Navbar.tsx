@@ -100,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Enter Master Password to Mark/Edit Attendance"
             >
               <Icons.Lock size={16} />
-              <span>🔒 Unlock Admin</span>
+              <span>Unlock Admin</span>
             </button>
           )}
         </div>

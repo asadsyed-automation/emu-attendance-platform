@@ -804,6 +804,8 @@ button, input, select, textarea {
 .meta-value {
   font-weight: 700;
   color: var(--text-main);
+  border-bottom: 1.5px solid var(--border-strong);
+  padding-bottom: 1px;
 }
 
 /* Attendance Table Wrapper */
@@ -1144,7 +1146,8 @@ th.sticky-col-roll {
   padding: 0.35rem 2px !important;
 }
 
-.print-signature-section {
+.print-signature-section,
+.print-footer-group {
   display: none;
 }
 
@@ -1577,6 +1580,10 @@ th.sticky-col-roll {
     font-size: 6.5pt !important;
     font-weight: bold !important;
     color: #000000 !important;
+    border-bottom: 1px solid #000000 !important;
+    padding-bottom: 1px !important;
+    display: inline-block !important;
+    min-width: 45px !important;
   }
 
   .official-attendance-table {
@@ -1604,6 +1611,24 @@ th.sticky-col-roll {
   }
 
   .official-attendance-table tbody tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .official-attendance-table tfoot {
+    display: table-footer-group !important;
+    border: none !important;
+  }
+
+  .official-attendance-table tfoot tr,
+  .official-attendance-table tfoot td {
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .print-footer-group {
+    display: table-footer-group !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
@@ -1790,14 +1815,13 @@ th.sticky-col-roll {
     font-size: 6.5pt !important;
   }
 
-  /* Official 2-Column Signatures Section */
+  /* Official 2-Column Signatures Section (Repeats on both pages in tfoot) */
   .print-signature-section {
     display: flex !important;
     justify-content: space-between !important;
     align-items: flex-end !important;
     width: 100% !important;
-    margin-top: 22px !important;
-    padding: 0 40px !important;
+    padding: 32px 45px 6px 45px !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
     box-sizing: border-box !important;

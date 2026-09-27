@@ -227,7 +227,7 @@ export function App() {
                     onClick={() => setIsPasswordModalOpen(true)}
                   >
                     <Icons.Lock size={14} />
-                    <span>🔒 Unlock Admin</span>
+                    <span>Unlock Admin</span>
                   </button>
                 )}
               </div>

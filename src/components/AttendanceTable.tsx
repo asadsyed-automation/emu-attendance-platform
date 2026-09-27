@@ -559,21 +559,30 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                 </td>
               </tr>
             </tbody>
-          </table>
-        </div>
-      </div>
 
-      {/* Official Signatures Section (Cleanly below the table in Print, no outer box) */}
-      <div className="print-signature-section">
-        <div className="signature-col">
-          <div className="signature-line">
-            Course Teacher's Signature
-          </div>
-        </div>
-        <div className="signature-col">
-          <div className="signature-line">
-            HOD Dept. of CS & IT
-          </div>
+            {/* Official Signatures Repeating Footer in Print (Appears at the bottom of EVERY printed page) */}
+            <tfoot className="print-footer-group">
+              <tr>
+                <td
+                  colSpan={3 + TOTAL_SEMESTER_SLOTS + 4}
+                  style={{ border: 'none', background: 'transparent', padding: 0 }}
+                >
+                  <div className="print-signature-section">
+                    <div className="signature-col">
+                      <div className="signature-line">
+                        Course Teacher's Signature
+                      </div>
+                    </div>
+                    <div className="signature-col">
+                      <div className="signature-line">
+                        HOD Dept. of CS & IT
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
     </div>
