@@ -1071,23 +1071,25 @@ th.sticky-col-roll {
 .cell-mark-wrapper {
   text-align: center;
   width: 32px;
-  min-width: 30px;
-  max-width: 36px;
+  min-width: 32px;
+  max-width: 32px;
   padding: 0.15rem 1px !important;
+  box-sizing: border-box;
 }
 
 /* Blank Lecture Slots (32-Column Register Grid) */
 .blank-header-cell {
   text-align: center;
-  width: 30px;
-  min-width: 28px;
-  max-width: 34px;
+  width: 32px;
+  min-width: 32px;
+  max-width: 32px;
   padding: 4px 1px 6px !important;
   vertical-align: bottom;
   height: 96px;
   user-select: none;
   border-right: 1px solid var(--border-light);
   background: var(--bg-table-header);
+  box-sizing: border-box;
 }
 
 .blank-header-content {
@@ -1113,13 +1115,37 @@ th.sticky-col-roll {
 
 .cell-blank-wrapper {
   text-align: center;
-  width: 30px;
-  min-width: 28px;
-  max-width: 34px;
+  width: 32px;
+  min-width: 32px;
+  max-width: 32px;
   padding: 0.15rem 1px !important;
   border-right: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
   background: transparent;
+  box-sizing: border-box;
+}
+
+.summary-col {
+  width: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  text-align: center !important;
+  box-sizing: border-box;
+  font-weight: 700;
+  padding: 0.35rem 2px !important;
+}
+
+.summary-col-pct {
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  text-align: center !important;
+  box-sizing: border-box;
+  padding: 0.35rem 2px !important;
+}
+
+.print-signature-section {
+  display: none;
 }
 
 .blank-cell-dot {
@@ -1448,13 +1474,13 @@ th.sticky-col-roll {
 @media print {
   @page {
     size: A4 landscape;
-    margin: 6mm 5mm 6mm 5mm;
+    margin: 5mm 5mm 5mm 5mm;
   }
 
   html, body {
     background: #ffffff !important;
     color: #000000 !important;
-    font-size: 8pt !important;
+    font-size: 7.5pt !important;
     font-family: 'Times New Roman', Times, serif, sans-serif !important;
     height: auto !important;
     min-height: 0 !important;
@@ -1487,16 +1513,7 @@ th.sticky-col-roll {
     margin: 0 !important;
     border: none !important;
     box-shadow: none !important;
-  }
-
-  .official-sheet-header {
-    border: 2px solid #000000 !important;
-    padding: 4px 8px !important;
-    margin-bottom: 6px !important;
-    background: #ffffff !important;
-    color: #000000 !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
+    background: transparent !important;
   }
 
   .print-header-repeat-row {
@@ -1504,57 +1521,89 @@ th.sticky-col-roll {
   }
 
   .print-sheet-header {
-    border: 2px solid #000000 !important;
-    padding: 4px 8px !important;
-    margin-bottom: 4px !important;
-    background: #ffffff !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 0 2px 0 !important;
+    background: transparent !important;
     color: #000000 !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
+    box-shadow: none !important;
   }
 
   .sheet-univ-title {
     color: #000000 !important;
-    font-size: 11.5pt !important;
+    font-size: 11pt !important;
     border-bottom: 1px solid #000000 !important;
-    padding-bottom: 2px !important;
-    margin-bottom: 2px !important;
+    padding-bottom: 1px !important;
+    margin-bottom: 1px !important;
     font-weight: bold !important;
+    text-align: center !important;
+    letter-spacing: 0.02em !important;
   }
 
   .sheet-sub-title {
-    font-size: 8pt !important;
-    margin-bottom: 4px !important;
+    font-size: 7.5pt !important;
+    margin-bottom: 2px !important;
     color: #000000 !important;
+    text-align: center !important;
+    font-weight: 600 !important;
   }
 
   .sheet-meta-grid {
-    font-size: 7.5pt !important;
-    padding-top: 3px !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1px 8px !important;
+    font-size: 6.5pt !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
     border-top: 1px solid #000000 !important;
-    gap: 2px 8px !important;
+    border-bottom: none !important;
+  }
+
+  .meta-field {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 2px !important;
+    white-space: nowrap !important;
+  }
+
+  .meta-label {
+    font-size: 6.5pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    text-transform: uppercase !important;
+  }
+
+  .meta-value {
+    font-size: 6.5pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
   }
 
   .official-attendance-table {
     width: 100% !important;
     border-collapse: collapse !important;
-    font-size: 7pt !important;
+    border-spacing: 0 !important;
+    font-size: 6.5pt !important;
     border: 1px solid #000000 !important;
     page-break-inside: auto !important;
-    table-layout: auto !important;
+    table-layout: fixed !important;
+    margin-top: 0 !important;
   }
 
   .official-attendance-table thead {
     display: table-header-group !important;
   }
 
-  .print-only-tfoot {
-    display: table-footer-group !important;
+  .official-attendance-table thead tr {
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
 
-  .official-attendance-table tr {
+  .official-attendance-table tbody {
+    display: table-row-group !important;
+  }
+
+  .official-attendance-table tbody tr {
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
@@ -1562,86 +1611,117 @@ th.sticky-col-roll {
   .official-attendance-table th,
   .official-attendance-table td {
     border: 1px solid #000000 !important;
-    padding: 2px 2px !important;
+    padding: 1px 1px !important;
     color: #000000 !important;
     background: #ffffff !important;
     height: auto !important;
+    box-sizing: border-box !important;
   }
 
-  .date-header-cell {
-    height: 75px !important;
-    width: 22px !important;
-    min-width: 18px !important;
-    max-width: 26px !important;
+  .sticky-col-sr {
+    position: static !important;
+    width: 20px !important;
+    min-width: 20px !important;
+    max-width: 20px !important;
+    padding: 1px 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    text-align: center !important;
+    font-size: 6.5pt !important;
+    box-sizing: border-box !important;
+  }
+
+  .sticky-col-roll {
+    position: static !important;
+    width: 60px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;
+    padding: 1px 2px !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    white-space: nowrap !important;
+    font-family: 'Times New Roman', Times, serif, sans-serif !important;
+    font-size: 6.5pt !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .col-student-name {
+    width: auto !important;
+    min-width: 100px !important;
+    max-width: 140px !important;
+    font-size: 6.5pt !important;
+    padding: 1px 3px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Exact equal width for all 32 lecture columns */
+  .date-header-cell,
+  .blank-header-cell {
+    height: 68px !important;
+    width: 19px !important;
+    min-width: 19px !important;
+    max-width: 19px !important;
     padding: 2px 0 !important;
     vertical-align: bottom !important;
+    background: #ffffff !important;
+    border: 1px solid #000000 !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
   }
 
   .date-vertical-text {
     color: #000000 !important;
-    font-size: 6.5pt !important;
+    font-size: 6pt !important;
     font-weight: bold !important;
   }
 
-  .blank-header-cell {
-    height: 75px !important;
-    width: 18px !important;
-    min-width: 16px !important;
-    max-width: 22px !important;
-    padding: 2px 0 !important;
-    vertical-align: bottom !important;
-    background: #ffffff !important;
-    border: 1px solid #000000 !important;
-  }
-
   .blank-slot-text {
-    color: #555555 !important;
+    color: #444444 !important;
     font-size: 5.5pt !important;
     font-weight: normal !important;
   }
 
+  .cell-mark-wrapper,
   .cell-blank-wrapper {
-    width: 18px !important;
-    min-width: 16px !important;
-    max-width: 22px !important;
+    width: 19px !important;
+    min-width: 19px !important;
+    max-width: 19px !important;
     border: 1px solid #000000 !important;
     background: #ffffff !important;
-    height: 14px !important;
+    height: 13px !important;
     padding: 0 !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
   }
 
   .blank-cell-dot {
     display: none !important;
   }
 
-  .sticky-col-sr {
-    position: static !important;
-    width: auto !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    padding: 2px 3px !important;
-    box-shadow: none !important;
-    background: #ffffff !important;
+  .summary-col {
+    width: 16px !important;
+    min-width: 16px !important;
+    max-width: 16px !important;
+    padding: 1px 0 !important;
     text-align: center !important;
+    font-size: 6.5pt !important;
+    font-weight: bold !important;
+    box-sizing: border-box !important;
   }
 
-  .sticky-col-roll {
-    position: static !important;
-    width: auto !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    padding: 2px 4px !important;
-    box-shadow: none !important;
-    background: #ffffff !important;
-    white-space: nowrap !important;
-    font-family: 'Times New Roman', Times, serif, sans-serif !important;
-    font-size: 7pt !important;
-  }
-
-  .col-student-name {
-    min-width: 120px !important;
-    max-width: 150px !important;
-    font-size: 7pt !important;
+  .summary-col-pct {
+    width: 25px !important;
+    min-width: 25px !important;
+    max-width: 25px !important;
+    padding: 1px 0 !important;
+    text-align: center !important;
+    font-size: 6.5pt !important;
+    font-weight: bold !important;
+    box-sizing: border-box !important;
   }
 
   .daily-totals-row td {
@@ -1649,18 +1729,41 @@ th.sticky-col-roll {
     color: #000000 !important;
     font-weight: bold !important;
     border: 1px solid #000000 !important;
+    padding: 1px 2px !important;
+    font-size: 6.5pt !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
+    box-sizing: border-box !important;
   }
 
   .daily-totals-cell {
     color: #000000 !important;
+    font-weight: bold !important;
+    text-align: center !important;
+  }
+
+  .daily-totals-label {
+    text-align: right !important;
+    padding-right: 4px !important;
+    font-weight: bold !important;
+  }
+
+  .daily-totals-blank {
+    text-align: center !important;
+    color: #444444 !important;
+  }
+
+  .daily-totals-summary {
+    text-align: center !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+    font-size: 6.5pt !important;
   }
 
   .attendance-badge {
     width: auto !important;
     height: auto !important;
-    font-size: 7pt !important;
+    font-size: 6.5pt !important;
     font-weight: bold !important;
     background: transparent !important;
     border: none !important;
@@ -1682,25 +1785,35 @@ th.sticky-col-roll {
     color: #000000 !important;
     padding: 0 !important;
     font-weight: bold !important;
+    font-size: 6.5pt !important;
   }
 
-  .print-signature-block {
+  /* Official 2-Column Signatures Section */
+  .print-signature-section {
     display: flex !important;
     justify-content: space-between !important;
     align-items: flex-end !important;
     width: 100% !important;
-    margin-top: 14px !important;
-    padding: 4px 10px !important;
-    font-weight: bold !important;
-    font-size: 7.5pt !important;
+    margin-top: 22px !important;
+    padding: 0 40px !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
+    box-sizing: border-box !important;
+  }
+
+  .signature-col {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 
   .signature-line {
-    border-top: 1px solid #000000 !important;
-    min-width: 160px !important;
+    border-top: 1.5px solid #000000 !important;
+    width: 240px !important;
     text-align: center !important;
-    padding-top: 3px !important;
+    padding-top: 4px !important;
+    font-size: 8.5pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
   }
 }

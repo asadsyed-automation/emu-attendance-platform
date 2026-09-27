@@ -171,55 +171,55 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
 
         <div className="sheet-meta-grid">
           <div className="meta-field">
-            <span className="meta-label">Programme:</span>
+            <span className="meta-label">PROGRAMME:</span>
             <span className="meta-value">{UNIVERSITY_INFO.programme}</span>
           </div>
           <div className="meta-field">
-            <span className="meta-label">Shift:</span>
+            <span className="meta-label">SHIFT:</span>
             <span className="meta-value">{UNIVERSITY_INFO.shift}</span>
           </div>
           <div className="meta-field">
-            <span className="meta-label">Semester:</span>
+            <span className="meta-label">SEMESTER:</span>
             <span className="meta-value">{UNIVERSITY_INFO.semester}</span>
           </div>
           <div className="meta-field">
-            <span className="meta-label">Session:</span>
+            <span className="meta-label">SESSION:</span>
             <span className="meta-value">{UNIVERSITY_INFO.session}</span>
           </div>
 
           <div className="meta-field">
-            <span className="meta-label">Course Code:</span>
+            <span className="meta-label">COURSE CODE:</span>
             <span className="meta-value" style={{ color: 'var(--color-maroon-700)' }}>
               {course.code}
             </span>
           </div>
           <div className="meta-field">
-            <span className="meta-label">Course Title:</span>
+            <span className="meta-label">COURSE TITLE:</span>
             <span className="meta-value">{course.title}</span>
           </div>
           <div className="meta-field">
-            <span className="meta-label">Credit Hours:</span>
+            <span className="meta-label">CREDIT HOURS:</span>
             <span className="meta-value">{course.creditHours}</span>
           </div>
           <div className="meta-field">
-            <span className="meta-label">Teacher:</span>
+            <span className="meta-label">TEACHER:</span>
             <span className="meta-value">{course.teacher}</span>
           </div>
 
           <div className="meta-field">
-            <span className="meta-label">Month(s):</span>
+            <span className="meta-label">MONTH(S):</span>
             <span className="meta-value">{getMonthRangeString()}</span>
           </div>
           <div className="meta-field">
-            <span className="meta-label">Year:</span>
+            <span className="meta-label">YEAR:</span>
             <span className="meta-value">2026</span>
           </div>
           <div className="meta-field">
-            <span className="meta-label">Official Strength:</span>
+            <span className="meta-label">OFFICIAL STRENGTH:</span>
             <span className="meta-value">{UNIVERSITY_INFO.officialStrength} Students</span>
           </div>
           <div className="meta-field">
-            <span className="meta-label">Lectures Held:</span>
+            <span className="meta-label">LECTURES HELD:</span>
             <span className="meta-value">{lectures.length} / 32 Slots</span>
           </div>
         </div>
@@ -298,53 +298,53 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
 
                     <div className="sheet-meta-grid">
                       <div className="meta-field">
-                        <span className="meta-label">Programme:</span>
+                        <span className="meta-label">PROGRAMME:</span>
                         <span className="meta-value">{UNIVERSITY_INFO.programme}</span>
                       </div>
                       <div className="meta-field">
-                        <span className="meta-label">Shift:</span>
+                        <span className="meta-label">SHIFT:</span>
                         <span className="meta-value">{UNIVERSITY_INFO.shift}</span>
                       </div>
                       <div className="meta-field">
-                        <span className="meta-label">Semester:</span>
+                        <span className="meta-label">SEMESTER:</span>
                         <span className="meta-value">{UNIVERSITY_INFO.semester}</span>
                       </div>
                       <div className="meta-field">
-                        <span className="meta-label">Session:</span>
+                        <span className="meta-label">SESSION:</span>
                         <span className="meta-value">{UNIVERSITY_INFO.session}</span>
                       </div>
 
                       <div className="meta-field">
-                        <span className="meta-label">Course Code:</span>
+                        <span className="meta-label">COURSE CODE:</span>
                         <span className="meta-value">{course.code}</span>
                       </div>
                       <div className="meta-field">
-                        <span className="meta-label">Course Title:</span>
+                        <span className="meta-label">COURSE TITLE:</span>
                         <span className="meta-value">{course.title}</span>
                       </div>
                       <div className="meta-field">
-                        <span className="meta-label">Credit Hours:</span>
+                        <span className="meta-label">CREDIT HOURS:</span>
                         <span className="meta-value">{course.creditHours}</span>
                       </div>
                       <div className="meta-field">
-                        <span className="meta-label">Teacher:</span>
+                        <span className="meta-label">TEACHER:</span>
                         <span className="meta-value">{course.teacher}</span>
                       </div>
 
                       <div className="meta-field">
-                        <span className="meta-label">Month(s):</span>
+                        <span className="meta-label">MONTH(S):</span>
                         <span className="meta-value">{getMonthRangeString()}</span>
                       </div>
                       <div className="meta-field">
-                        <span className="meta-label">Year:</span>
+                        <span className="meta-label">YEAR:</span>
                         <span className="meta-value">2026</span>
                       </div>
                       <div className="meta-field">
-                        <span className="meta-label">Official Strength:</span>
+                        <span className="meta-label">OFFICIAL STRENGTH:</span>
                         <span className="meta-value">{UNIVERSITY_INFO.officialStrength} Students</span>
                       </div>
                       <div className="meta-field">
-                        <span className="meta-label">Lectures Held:</span>
+                        <span className="meta-label">LECTURES HELD:</span>
                         <span className="meta-value">{lectures.length} / 32 Slots</span>
                       </div>
                     </div>
@@ -405,7 +405,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                 <th className="summary-col" title="Total Lectures Held">
                   T
                 </th>
-                <th className="summary-col" title="Attendance Percentage">
+                <th className="summary-col summary-col-pct" title="Attendance Percentage">
                   %
                 </th>
               </tr>
@@ -500,7 +500,7 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                       {aCount}
                     </td>
                     <td className="summary-col">{total}</td>
-                    <td className="summary-col">
+                    <td className="summary-col summary-col-pct">
                       <span
                         className={`pct-badge ${
                           pct >= 75
@@ -559,35 +559,21 @@ export const AttendanceTable: React.FC<AttendanceTableProps> = ({
                 </td>
               </tr>
             </tbody>
-
-            {/* Official Signatures Repeating Footer in Print */}
-            <tfoot className="print-only-tfoot">
-              <tr>
-                <td
-                  colSpan={3 + TOTAL_SEMESTER_SLOTS + 4}
-                  style={{ padding: '14px 4px 2px', border: 'none', background: 'transparent' }}
-                >
-                  <div className="print-signature-block">
-                    <div>
-                      <div className="signature-line">
-                        Course Teacher's Signature
-                      </div>
-                    </div>
-                    <div>
-                      <div className="signature-line">
-                        In-Charge / HOD Dept. of CS & IT
-                      </div>
-                    </div>
-                    <div>
-                      <div className="signature-line">
-                        Dean / Chairperson
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tfoot>
           </table>
+        </div>
+      </div>
+
+      {/* Official Signatures Section (Cleanly below the table in Print, no outer box) */}
+      <div className="print-signature-section">
+        <div className="signature-col">
+          <div className="signature-line">
+            Course Teacher's Signature
+          </div>
+        </div>
+        <div className="signature-col">
+          <div className="signature-line">
+            HOD Dept. of CS & IT
+          </div>
         </div>
       </div>
     </div>
