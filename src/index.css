@@ -1586,7 +1586,7 @@ th.sticky-col-roll {
     font-size: 6.5pt !important;
     border: 1px solid #000000 !important;
     page-break-inside: auto !important;
-    table-layout: fixed !important;
+    table-layout: auto !important;
     margin-top: 0 !important;
   }
 
@@ -1620,23 +1620,26 @@ th.sticky-col-roll {
 
   .sticky-col-sr {
     position: static !important;
+    left: auto !important;
     width: 20px !important;
     min-width: 20px !important;
-    max-width: 20px !important;
+    max-width: 24px !important;
     padding: 1px 0 !important;
     box-shadow: none !important;
     background: #ffffff !important;
     text-align: center !important;
     font-size: 6.5pt !important;
     box-sizing: border-box !important;
+    white-space: nowrap !important;
   }
 
   .sticky-col-roll {
     position: static !important;
-    width: 60px !important;
-    min-width: 60px !important;
-    max-width: 60px !important;
-    padding: 1px 2px !important;
+    left: auto !important;
+    width: auto !important;
+    min-width: 80px !important;
+    max-width: 90px !important;
+    padding: 1px 3px !important;
     box-shadow: none !important;
     background: #ffffff !important;
     white-space: nowrap !important;
@@ -1648,14 +1651,15 @@ th.sticky-col-roll {
 
   .col-student-name {
     width: auto !important;
-    min-width: 100px !important;
-    max-width: 140px !important;
+    min-width: 125px !important;
+    max-width: 145px !important;
     font-size: 6.5pt !important;
-    padding: 1px 3px !important;
+    padding: 1px 4px !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     box-sizing: border-box !important;
+    text-align: left !important;
   }
 
   /* Exact equal width for all 32 lecture columns */
